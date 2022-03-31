@@ -6,6 +6,16 @@
 	justify-content: space-between;
 	padding: 20px;
 	background-color: $dark;
+
+	@media (max-width: $xs) {
+		padding: 10px;
+	}
+
+	// &__nav {
+	// 	@media (max-width: $xs) {
+	// 		margin-bottom: 20px;
+	// 	}
+	// }
 }
 
 .headerNav {
@@ -15,11 +25,16 @@
 .navList {
 	display: flex;
 	align-items: center;
+	padding: 0;
 
 	&__item {
 		display: block;
 		line-height: 1;
 		margin-right: 24px;
+
+		@media (max-width: $xs) {
+			margin-right: 12px;
+		}
 
 		&:last-child {
 			margin-right: 0;

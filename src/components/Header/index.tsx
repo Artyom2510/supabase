@@ -20,7 +20,7 @@ const Header: FC<HeaderProps> = ({ tglPopupSingIn, tglPopupSingUp }) => {
 
 	return (
 		<header className={styles.header}>
-			<nav className={styles.headerNav}>
+			<nav className={cn(styles.header__nav, styles.headerNav)}>
 				<ul className={cn(styles.headerNav__list, styles.navList)}>
 					<li className={styles.navList__item}>
 						<NavLink to='/' className={styles.headerLink}>
