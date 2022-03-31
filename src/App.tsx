@@ -29,7 +29,7 @@ const App = () => {
 	}, []);
 
 	return (
-		<HashRouter>
+		<Router>
 			<Auth>
 				<Routes>
 					<Route path='/' element={<Layout />}>
@@ -46,7 +46,7 @@ const App = () => {
 					</Route>
 				</Routes>
 			</Auth>
-		</HashRouter>
+		</Router>
 	);
 };
 
