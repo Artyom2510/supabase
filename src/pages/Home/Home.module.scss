@@ -1,0 +1,17 @@
+@import "../../assets/style/vars";
+
+.home {
+	padding: 20px;
+
+	&__title {
+		margin-bottom: 24px;
+		text-align: center;
+		color: $text;
+	}
+
+	&__desc {
+		font-size: 20px;
+		line-height: 24px;
+		color: $text;
+	}
+}

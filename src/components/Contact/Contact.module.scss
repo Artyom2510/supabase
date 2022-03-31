@@ -1,0 +1,53 @@
+@import "../../assets/style/vars";
+
+.contact {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 16px 12px 16px 50px;
+	background-color: $dark;
+	border-radius: 12px;
+	overflow: hidden;
+
+	@media (max-width: $xs) {
+		display: block;
+	}
+
+	&__wrap {
+		margin-right: 24px;
+
+		@media (max-width: $xs) {
+			margin-right: 0;
+			margin-bottom: 12px;
+		}
+	}
+
+	&__btnWrap {
+		display: flex;
+
+		@media (max-width: $xs) {
+			display: block;
+		}
+	}
+
+	&__btn {
+		margin-right: 8px;
+		flex-shrink: 0;
+
+		&:last-child {
+			margin: 0;
+		}
+	}
+}
+
+.wrap {
+	&__fullName {
+		margin-bottom: 4px;
+		color: $white;
+	}
+
+	&__email {
+		color: $gray;
+	}
+}
