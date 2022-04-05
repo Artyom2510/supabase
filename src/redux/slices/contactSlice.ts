@@ -48,12 +48,16 @@ export const slice = createSlice({
 		},
 		setDefaultContact: state => {
 			state.currentContact = currentContact;
+		},
+		setToDeleteIdContact: (state, { payload }: PayloadAction<number>) => {
+			state.currentContact.id = payload;
 		}
 	}
 });
 const { sendDataStart, sendDataSuccess, sendDataFailure } = slice.actions;
 
-export const { setCurrentContact, setDefaultContact } = slice.actions;
+export const { setCurrentContact, setDefaultContact, setToDeleteIdContact } =
+	slice.actions;
 
 export const createNewContact =
 	(data: ContactDTO, cb: () => void) => async (dispatch: Dispatch) => {
@@ -87,19 +91,27 @@ export const updateContact =
 		}
 	};
 
-export const deleteContact = (id: number) => async (dispatch: Dispatch) => {
-	dispatch(sendDataStart());
-	try {
-		const dataObj = await supaBaseClient.deleteContact(id);
-		if (dataObj) {
-			dispatch(sendDataSuccess());
-		} else {
-			dispatch(sendDataFailure('ошибка сервера'));
+export const deleteContact =
+	(cb: () => void) => async (dispatch: Dispatch, getState: () => RootState) => {
+		dispatch(sendDataStart());
+		const { contact } = getState();
+		const {
+			currentContact: { id }
+		} = contact;
+		try {
+			if (id) {
+				const dataObj = await supaBaseClient.deleteContact(id);
+				if (dataObj) {
+					dispatch(sendDataSuccess());
+					cb && cb();
+				} else {
+					dispatch(sendDataFailure('ошибка сервера'));
+				}
+			}
+		} catch (err) {
+			dispatch(sendDataFailure(handleHttpError(err)));
 		}
-	} catch (err) {
-		dispatch(sendDataFailure(handleHttpError(err)));
-	}
-};
+	};
 
 export const selectFormContact = (state: RootState) => state.contact;
 

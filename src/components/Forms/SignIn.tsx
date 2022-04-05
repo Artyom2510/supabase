@@ -44,11 +44,7 @@ const SignIn: FC<SignInProps> = ({ onSuccess, tglPopup }) => {
 	});
 
 	const onSubmit = handleSubmit(data => {
-		dispatch(
-			sendFormSignIn(data, () => {
-				onSuccess();
-			})
-		);
+		dispatch(sendFormSignIn(data, onSuccess));
 	});
 
 	return (

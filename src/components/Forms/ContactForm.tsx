@@ -44,24 +44,18 @@ const ContactForm: FC<ContactPops> = ({ onSuccess }) => {
 
 	const onSubmit = handleSubmit(data => {
 		if (id) {
-			dispatch(
-				updateContact({ ...data, id }, () => {
-					onSuccess();
-				})
-			);
+			dispatch(updateContact({ ...data, id }, onSuccess));
 		} else {
 			const user_id = user?.id;
-			dispatch(
-				createNewContact({ ...data, user_id }, () => {
-					onSuccess();
-				})
-			);
+			dispatch(createNewContact({ ...data, user_id }, onSuccess));
 		}
 	});
 
 	return (
 		<form className={styles.form} noValidate onSubmit={onSubmit}>
-			<h3 className={styles.form__title}>Create new contact</h3>
+			<h3 className={styles.form__title}>
+				{id ? 'Update contact' : 'Create new contact'}
+			</h3>
 			<div className={styles.form__fields}>
 				<Input
 					className={styles.form__field}

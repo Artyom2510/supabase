@@ -23,7 +23,7 @@ const ModalThx: FC<ThxProps> = ({
 		}, time);
 
 		return () => {
-			clearTimeout(timer.current as NodeJS.Timeout);
+			timer.current && clearTimeout(timer.current);
 		};
 	}, []);
 

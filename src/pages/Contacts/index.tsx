@@ -21,13 +21,15 @@ import {
 	selectFormContact,
 	setDefaultContact
 } from '../../redux/slices/contactSlice';
+import WarningInfo from '../../components/ui/WarningInfo';
 
 const Contacts = () => {
 	const dispatch = useDispatch();
 	const user = useSelector(userSelector);
 	const { currentContact } = useSelector(selectFormContact);
-
+	const { contacts, isLoaded } = useSelector(selectContacts);
 	const [showPopupCreate, setShowPopupCreate] = useState(false);
+	const [showPopupWarning, setShowPopupWarning] = useState(false);
 	const [searchVal, setSearchVal] = useState('');
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +43,10 @@ const Contacts = () => {
 		setShowPopupCreate(!showPopupCreate);
 	};
 
-	const { contacts, isLoaded } = useSelector(selectContacts);
+	const tglPopupWarning = () => {
+		setShowPopupWarning(!showPopupWarning);
+	};
+
 	useEffect(() => {
 		user && dispatch(loadContacts(user.id));
 	}, [contacts]);
@@ -60,10 +65,12 @@ const Contacts = () => {
 					<Spinner />
 				) : (
 					<>
-						<SearchInput
-							className={styles.contacts__search}
-							handleChange={handleChange}
-						/>
+						{contacts.length && (
+							<SearchInput
+								className={styles.contacts__search}
+								handleChange={handleChange}
+							/>
+						)}
 						<Button
 							className={styles.contacts__new}
 							handleClick={tglPopupContact}
@@ -80,6 +87,7 @@ const Contacts = () => {
 												{...contact}
 												className={styles.contactsList__item}
 												tglPopupContact={tglPopupContact}
+												tglPopupWarning={tglPopupWarning}
 											/>
 										);
 									})}
@@ -103,6 +111,12 @@ const Contacts = () => {
 							)
 						}
 					</FormController>
+				</Modal>
+			)}
+
+			{showPopupWarning && (
+				<Modal hide={tglPopupWarning}>
+					<WarningInfo hide={tglPopupWarning} />
 				</Modal>
 			)}
 		</>
