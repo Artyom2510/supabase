@@ -10,13 +10,14 @@ import EditIcon from '../../assets/img/icons/edit.svg';
 
 import styles from './Contact.module.scss';
 import {
-	deleteContact,
-	setCurrentContact
+	setCurrentContact,
+	setToDeleteIdContact
 } from '../../redux/slices/contactSlice';
 
 interface ContactProps extends ContactDTO {
 	className: string;
 	tglPopupContact: () => void;
+	tglPopupWarning: () => void;
 }
 
 const Contact: FC<ContactProps> = ({
@@ -25,17 +26,19 @@ const Contact: FC<ContactProps> = ({
 	first_name,
 	last_name,
 	email,
-	tglPopupContact
+	tglPopupContact,
+	tglPopupWarning
 }) => {
 	const dispatch = useDispatch();
 
-	const editPopup = () => {
-		dispatch(setCurrentContact({ id, first_name, last_name, email }));
-		tglPopupContact();
+	const openDeletePopup = () => {
+		id && dispatch(setToDeleteIdContact(id));
+		tglPopupWarning();
 	};
 
-	const delContact = () => {
-		dispatch(deleteContact(id as number));
+	const openEditPopup = () => {
+		dispatch(setCurrentContact({ id, first_name, last_name, email }));
+		tglPopupContact();
 	};
 
 	return (
@@ -48,14 +51,14 @@ const Contact: FC<ContactProps> = ({
 				<ButtonWithImage
 					type='edit'
 					className={styles.contact__btn}
-					handleClick={editPopup}
+					handleClick={openEditPopup}
 				>
 					<img src={EditIcon} alt='Edit' />
 				</ButtonWithImage>
 				<ButtonWithImage
 					type='delete'
 					className={styles.contact__btn}
-					handleClick={delContact}
+					handleClick={openDeletePopup}
 				>
 					<img src={DeleteIcon} alt='Delete' />
 				</ButtonWithImage>
