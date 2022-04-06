@@ -8,6 +8,7 @@ import userReducer from '../slices/userSlice';
 import contactReducer from '../slices/contactSlice';
 
 const store = configureStore({
+	devTools: process.env.NODE_ENV === 'production',
 	reducer: {
 		user: userReducer,
 		formSignIn: formSliceSignInReducer,
