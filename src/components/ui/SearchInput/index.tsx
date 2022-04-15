@@ -6,15 +6,21 @@ import styles from './SearchInput.module.scss';
 type SearchInputProps = {
 	className: string;
 	handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+	value: string;
 };
 
-const SearchInput: FC<SearchInputProps> = ({ className, handleChange }) => {
+const SearchInput: FC<SearchInputProps> = ({
+	className,
+	value,
+	handleChange
+}) => {
 	return (
 		<input
 			type='search'
 			name='search'
-			placeholder='search...'
+			placeholder='match-sorter search...'
 			id='search'
+			value={value}
 			onChange={handleChange}
 			className={cn(className, styles.search)}
 		/>
