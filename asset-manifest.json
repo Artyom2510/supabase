@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/supabase/static/css/main.fbf898c2.chunk.css",
-    "main.js": "/supabase/static/js/main.4f4cf0af.chunk.js",
+    "main.js": "/supabase/static/js/main.26d9e3f1.chunk.js",
     "runtime-main.js": "/supabase/static/js/runtime-main.baa1ba7f.js",
     "static/css/2.67c6887e.chunk.css": "/supabase/static/css/2.67c6887e.chunk.css",
-    "static/js/2.67ab872c.chunk.js": "/supabase/static/js/2.67ab872c.chunk.js",
+    "static/js/2.54e2fb1c.chunk.js": "/supabase/static/js/2.54e2fb1c.chunk.js",
     "index.html": "/supabase/index.html",
-    "static/js/2.67ab872c.chunk.js.LICENSE.txt": "/supabase/static/js/2.67ab872c.chunk.js.LICENSE.txt",
+    "static/js/2.54e2fb1c.chunk.js.LICENSE.txt": "/supabase/static/js/2.54e2fb1c.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/supabase/static/media/Montserrat-Regular.93ce0c0a.woff2",
     "static/media/check.e270ba5a.svg": "/supabase/static/media/check.e270ba5a.svg",
     "static/media/edit.56b97d7a.svg": "/supabase/static/media/edit.56b97d7a.svg",
@@ -15,8 +15,8 @@
   "entrypoints": [
     "static/js/runtime-main.baa1ba7f.js",
     "static/css/2.67c6887e.chunk.css",
-    "static/js/2.67ab872c.chunk.js",
+    "static/js/2.54e2fb1c.chunk.js",
     "static/css/main.fbf898c2.chunk.css",
-    "static/js/main.4f4cf0af.chunk.js"
+    "static/js/main.26d9e3f1.chunk.js"
   ]
 }
