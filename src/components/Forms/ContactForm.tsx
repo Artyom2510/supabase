@@ -16,6 +16,7 @@ import Button from '../ui/Button';
 import { ContactDTO } from '../../models/ContactDto.dto';
 
 import styles from './Form.module.scss';
+import { loadContacts } from '../../redux/slices/userContactsSlice';
 
 type ContactPops = {
 	onSuccess: () => void;
@@ -42,12 +43,24 @@ const ContactForm: FC<ContactPops> = ({ onSuccess }) => {
 		resolver: yupResolver(schema)
 	});
 
+	const triggerUpdateContactsAfterSuccess = () => {
+		user && dispatch(loadContacts(user.id));
+		onSuccess();
+	};
+
 	const onSubmit = handleSubmit(data => {
 		if (id) {
-			dispatch(updateContact({ ...data, id }, onSuccess));
+			dispatch(
+				updateContact({ ...data, id }, triggerUpdateContactsAfterSuccess)
+			);
 		} else {
 			const user_id = user?.id;
-			dispatch(createNewContact({ ...data, user_id }, onSuccess));
+			dispatch(
+				createNewContact(
+					{ ...data, user_id },
+					triggerUpdateContactsAfterSuccess
+				)
+			);
 		}
 	});
 

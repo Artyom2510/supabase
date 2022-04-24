@@ -49,7 +49,7 @@ const Contacts = () => {
 
 	useEffect(() => {
 		user && dispatch(loadContacts(user.id));
-	}, [contacts]);
+	}, []);
 
 	const MatchSorter = useMemo(() => {
 		if (!searchVal) {
